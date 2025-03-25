@@ -4,7 +4,7 @@ info:
   description: API for managing product catalog with authentication, products, and categories
   version: 1.0.0
   
-host: localhost:5000
+host: localhost:3000
 basePath: /api
 schemes:
   - http
