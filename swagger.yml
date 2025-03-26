@@ -1,0 +1,148 @@
+openapi: 3.0.0
+info:
+  title: Product Catalog API
+  description: API documentation for Categories, Products, and Users with authentication
+  version: 1.0.0
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  tags:
+    - name: Products
+      description: Operations related to products
+    - name: Categories
+      description: Operations related to categories
+    - name: Auth
+      description: User authentication operations
+
+paths:
+  /api/products:
+    get:
+      summary: Get all products
+      security:
+        - bearerAuth: []
+      tags:
+        - Products
+      responses:
+        200:
+          description: Successfully retrieved products
+        401:
+          description: Unauthorized - No token or invalid token
+        500:
+          description: Internal server error
+    post:
+      summary: Create a new product
+      security:
+        - bearerAuth: []
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+      responses:
+        201:
+          description: Product created successfully
+        401:
+          description: Unauthorized - No token or invalid token
+        500:
+          description: Internal server error
+
+  /api/categories:
+    get:
+      summary: Get all categories
+      security:
+        - bearerAuth: []
+      tags:
+        - Categories
+      responses:
+        200:
+          description: Successfully retrieved categories
+        401:
+          description: Unauthorized - No token or invalid token
+        500:
+          description: Internal server error
+    post:
+      summary: Create a new category
+      security:
+        - bearerAuth: []
+      tags:
+        - Categories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        201:
+          description: Category created successfully
+        401:
+          description: Unauthorized - No token or invalid token
+        500:
+          description: Internal server error
+
+  /api/auth/login:
+    post:
+      summary: Login user and return JWT token
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        401:
+          description: Unauthorized - Invalid credentials
+
+  /api/auth/register:
+    post:
+      summary: Register a new user
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        201:
+          description: User registered successfully
+        400:
+          description: Invalid input data

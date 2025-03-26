@@ -1,43 +1,3 @@
-/**
- * @swagger
- * tags:
- *   name: Users
- *   description: Operations related to users
- */
-
-/**
- * @swagger
- * /api/auth/login:
- *   post:
- *     tags: [Users]
- *     summary: Login a user
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               username:
- *                 type: string
- *               password:
- *                 type: string
- *     responses:
- *       200:
- *         description: Login successful and token returned
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 token:
- *                   type: string
- *       400:
- *         description: Invalid credentials
- *       500:
- *         description: Internal server error
- */
-
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
@@ -99,7 +59,7 @@ const loginUser = async (req, res) => {
 
     // If password matches, generate a JWT token
     const payload = { user: { id: user.id, role: user.role } };
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '3h' });
 
     // Send token as response
     res.status(200).json({ token });

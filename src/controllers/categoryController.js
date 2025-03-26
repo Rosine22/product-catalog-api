@@ -1,39 +1,3 @@
-/**
- * @swagger
- * tags:
- *   name: Categories
- *   description: Operations related to categories
- * security:
- *   - bearerAuth: []
- * server:
- *   - url: http://localhost:3000/api
- */
-
-/**
- * @swagger
- * /api/categories:
- *   post:
- *     tags: [Categories]
- *     summary: Create a new category
- *     security:
- *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               description:
- *                 type: string
- *     responses:
- *       201:
- *         description: Category created successfully
- *       500:
- *         description: Internal server error
- */
 
 const Category = require('../models/categoryModel');
 

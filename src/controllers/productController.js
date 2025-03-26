@@ -1,37 +1,3 @@
-/**
- * @swagger
- * tags:
- *   name: Products
- *   description: Operations related to products
- */
-
-/**
- * @swagger
- * /api/products:
- *   post:
- *     tags: [Products]
- *     summary: Create a new product
- *     security:
- *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *               price:
- *                 type: number
- *               category:
- *                 type: string
- *     responses:
- *       201:
- *         description: Product created successfully
- *       400:
- *         description: Invalid input
- */
 
 const Product = require('../models/productModel');
 
